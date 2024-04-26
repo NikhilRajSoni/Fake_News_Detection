@@ -1,0 +1,113 @@
+<!-- dashboard.html -->
+
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Dashboard</title>
+    <style>
+        body {
+            font-family: Arial, sans-serif;
+            background-color: hsla(0, 7%, 83%, 0.845);
+            margin: 0;
+            padding: 0;
+            background-image: url("https://coderkube.com/wp-content/uploads/2017/08/filter-bg.jpg");
+        }
+
+        .container {
+            width: 80%;
+            margin: 0 auto;
+            padding: 20px;
+            background-color: #fff;
+            border: 2px solid #000;
+            border-radius: 10px;
+            box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
+        }
+
+        h1, h2, h3 {
+            text-align: center;
+        }
+
+        form {
+            margin-bottom: 20px;
+        }
+
+        label {
+            font-weight: bold;
+        }
+
+        input[type="text"], textarea {
+            width: 100%;
+            padding: 10px;
+            margin-top: 5px;
+            margin-bottom: 15px;
+            border: 2px solid #ccc;
+            border-radius: 5px;
+            box-sizing: border-box;
+        }
+
+        input[type="submit"] {
+            background-color: #4CAF50;
+            color: white;
+            padding: 12px 20px;
+            border: none;
+            border-radius: 4px;
+            cursor: pointer;
+        }
+
+        input[type="submit"]:hover {
+            background-color: #45a049;
+        }
+
+        .news-container {
+            padding: 20px;
+            border: 2px double #000;
+            border-radius: 10px;
+            background-color: #f9f9f9;
+            margin-top: 20px;
+        }
+
+        .news-content {
+            margin-bottom: 20px;
+        }
+
+        .sentiment {
+            font-weight: bold;
+            color: #4CAF50; /* Green for Positive sentiment */
+        }
+    </style>
+</head>
+<body>
+    <div class="container">
+        <h1 style="color: rgb(224, 97, 214);">Welcome, {{ username }}!</h1>
+        <p><a href="/logout"><b style="color: red;">Logout</b></a></p>
+        
+        <h2>Submit News</h2>
+        <form action="/submit_news" method="post">
+            <label for="url" style="color: blue;">News URL:</label>
+            <input type="text" id="url" name="url"><br>
+            
+            <label for="news_text" style="color: blue;">News Text:</label>
+            <textarea id="news_text" name="news_text" rows="4" cols="50"></textarea><br>
+            
+            <input type="submit" value="Submit">
+        </form>
+
+        <div class="news-container">
+            <h2>Submitted News</h2>
+            {% if news %}
+            <div class="news-content">
+                <h3>{{ news.headline }}</h3>
+                <p>{{ news.content }}</p>
+                <p class="sentiment">Sentiment: {{ news.sentiment }}</p> <!-- Display sentiment -->
+                <p class="sentiment">Sentiment: {{ news.sentiment }}</p>
+            </div>
+            {% else %}
+            <p style="color: red;">Please Submit Your News...</p>
+            {% endif %}
+        </div>
+        
+    </div>
+</body>
+</html>
